@@ -11,7 +11,7 @@ jobs:
           command: pip install -r requirements.txt
       - run:
           name: Run tests
-          command: pytest unit_test.py
+          command: pytest test_duration_calender.py
 
 workflows:
   version: 2

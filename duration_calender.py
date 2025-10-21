@@ -11,7 +11,8 @@ def duration():
 
     #ask user to input the second date that they want to calculate the difference against
     input_str = input("Please enter the date you want to calculate from in the format (YYYY-MM-DD): ")
-    date2 = datetime.strptime(input_str, "%Y-%m-%d").date()  #parse the string to format as a date
+    date2 = datetime.strptime(input_str, "%Y-%m-%d").date()  
+    #parse the string to format as a date
 
     #calculate the difference between the inputted date and today
     difference = (today - date2)

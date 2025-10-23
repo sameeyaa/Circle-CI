@@ -17,3 +17,4 @@ def duration():
     #calculate the difference between the inputted date and today
     difference = (today - date2)
     print(difference)
+

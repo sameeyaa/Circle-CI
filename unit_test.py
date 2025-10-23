@@ -1,10 +1,10 @@
 import unittest
 from simple_test import add
 
-class test(unittest.TestCase):
+class AdditionTest(unittest.TestCase):
     def test_add(self):
-        result = add(2, 3)
-        self.assertEqual(result, 5)
+        AdditionResult = add(2, 3)
+        self.assertEqual(AdditionResult, 5)
 
 if __name__ == '__main__':
     unittest.main()

@@ -15,3 +15,6 @@ def test_draw():
     assert get_winner("paper", "paper") == "draw"
     assert get_winner("scissors", "scissors") == "draw"
 
+
+
+

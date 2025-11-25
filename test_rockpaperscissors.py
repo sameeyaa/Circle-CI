@@ -11,3 +11,8 @@ def test_computer_wins():
     assert get_winner("paper", "scissors") == "The computer wins! You lose!"
     assert get_winner("scissors", "rock") == "The computer wins! You lose!"
 
+def test_draw():
+    assert get_winner("rock", "rock") == "It's a draw! Play again."
+    assert get_winner("paper", "paper") == "It's a draw! Play again."
+    assert get_winner("scissors", "scissors") == "It's a draw! Play again."
+

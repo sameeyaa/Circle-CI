@@ -42,7 +42,9 @@ def play_game():
     else:
         print("The computer wins! You lose!")
 
-get_computer_option()
-play_game()     
+#get_computer_option()
+#play_game()     
 
-#game successfully runs
+#enable unit testing
+if __name__ == "__main__":
+    play_game()

@@ -25,3 +25,6 @@ def test_computer_input():
 #making sure computer input is limited to 3 options: rock,paper,scissors
     for _ in range(50):
         assert get_computer_option() in options
+
+#to unit test, type in terminal: pytest test_rockpaperscissors.py
+

@@ -4,22 +4,21 @@ from scipy import stats
 import matplotlib.pyplot as plt
 import numpy as np
 
-def computer_regression(months, sales):
+def make_regression(months, sales):
     return stats.linregress(months, sales)
 
-def compute_best_fit_line(months, slope, intercept):
+def make_best_fit_line(months, slope, intercept):
     return slope * months + intercept
 
-
-
 #enter data that will be used to plot x and y axis
-months = np.array([5,13,15,20,25,30,32,40,45,50,58,60])
-sales = np.array([50,100,147,200,250,305,350,420,450,500,550,600])
+if __name__ == "__main__":
+    months = np.array([5,13,15,20,25,30,32,40,45,50,58,60])
+    sales = np.array([50,100,147,200,250,305,350,420,450,500,550,600])
 
-slope,intercept,r_value,p_value, std_err = stats.linregress(months, sales)
+    slope,intercept,r_value,p_value, std_err = stats.linregress(months, sales)
 
 #create a line of bestfit for the data
-line_of_best_fit = slope*months + intercept
+    line_of_best_fit = slope*months + intercept
 
 #plot the scatter graph
 plt.scatter(months, sales, color = 'blue', label = 'Sales')

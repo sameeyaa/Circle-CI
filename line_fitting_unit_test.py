@@ -9,3 +9,11 @@ def test_regression_values():
 
     slope, intercept, r_value, p_value, std_err = make_regression(months, sales)
 
+#test if regression features correctly follow typical trends
+#check if sales increase over time
+    assert slope > 0
+    #check if there is a positive correlation
+    assert r_value > 0.98
+    #check if there are any errors
+    assert std_err < 5
+    

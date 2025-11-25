@@ -1,7 +1,16 @@
+#linear regression on monthly sales data to plot a scatter graph
 import scipy.stats
 from scipy import stats
 import matplotlib.pyplot as plt
 import numpy as np
+
+def computer_regression(months, sales):
+    return stats.linregress(months, sales)
+
+def compute_best_fit_line(months, slope, intercept):
+    return slope * months + intercept
+
+
 
 #enter data that will be used to plot x and y axis
 months = np.array([5,13,15,20,25,30,32,40,45,50,58,60])

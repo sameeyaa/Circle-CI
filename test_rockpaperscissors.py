@@ -16,3 +16,12 @@ def test_draw():
     assert get_winner("paper", "paper") == "It's a draw! Play again."
     assert get_winner("scissors", "scissors") == "It's a draw! Play again."
 
+def test_invalid_inout():
+    with pytest.raises(ValueError):
+        get_winner("Blue", "rock")
+
+#test if computer gives a correct input
+def test_computer_input():
+#making sure computer input is limited to 3 options: rock,paper,scissors
+    for _ in range(50):
+        assert get_computer_option() in options

@@ -26,4 +26,7 @@ def test_line_of_best_fit():
     result = make_best_fit_line(months, slope, intercept)
     expected = np.array([15,25,35])
 
-    
+    assert np.allclose(result, expected)
+
+    #run unit test by typing pytest line_fitting_unit_test.py in terminal
+

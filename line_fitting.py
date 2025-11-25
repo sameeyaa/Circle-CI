@@ -21,10 +21,10 @@ if __name__ == "__main__":
     line_of_best_fit = slope*months + intercept
 
 #plot the scatter graph
-plt.scatter(months, sales, color = 'blue', label = 'Sales')
-plt.plot(months,line_of_best_fit, color = 'pink', label = 'Line of Best fit')
-plt.xlabel('Month')
-plt.ylabel('Sales')
-plt.title('Monthly Sales with Regression')
-plt.legend()
-plt.show()
+    plt.scatter(months, sales, color = 'blue', label = 'Sales')
+    plt.plot(months,line_of_best_fit, color = 'pink', label = 'Line of Best fit')
+    plt.xlabel('Month')
+    plt.ylabel('Sales')
+    plt.title('Monthly Sales with Regression')
+    plt.legend()
+    plt.show()

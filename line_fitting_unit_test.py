@@ -16,4 +16,14 @@ def test_regression_values():
     assert r_value > 0.98
     #check if there are any errors
     assert std_err < 5
+
+#create a line of best fit
+def test_line_of_best_fit():
+    months = np.array([1,2,3])
+    slope = 10
+    intercept = 5
+
+    result = make_best_fit_line(months, slope, intercept)
+    expected = np.array([15,25,35])
+
     

@@ -10,5 +10,5 @@ This repository unit tests certain files from the DAT5501-Portfolio Repository:
 -rock,paper,scissors game
 -simple unit test
 -digital pet
--
+-fitting forecasting
 

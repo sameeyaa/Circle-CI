@@ -10,5 +10,8 @@ This repository unit tests certain files from the DAT5501-Portfolio Repository:
 -rock,paper,scissors game
 -simple unit test
 -digital pet
--fitting forecasting
+-fitting and forecasting
+
+Run unit tests by typing pytest -v in terminal for all unit tests to run simultaneously
+To test one specific unit test, type in the terminal. "pytest {file_name}"
 

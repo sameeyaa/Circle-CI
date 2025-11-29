@@ -52,3 +52,4 @@ if __name__ == '__main__':
     unittest.main()
 
 #test failes when vitals exceed 10, meaning code is running smoohtly 
+#unit test successful

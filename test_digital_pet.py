@@ -32,9 +32,18 @@ class TestDigitalPet(unittest.TestCase):
 
     def test_wake_up(self):
         pet = DigitalPet("MyPet")
-        pet.sleeping = Truepet.energy = 3
+        pet.sleeping = True
+        pet.energy = 3
         pet.wake_up()
-        self.assertEqual(oet.energy, 15) #test if vitals exceed the cap of 10
+        self.assertEqual(pet.energy, 15) #test if vitals exceed the cap of 10
 
-       
-
+    #test playing function
+    def test_play(self): 
+        pet = DigitalPet("MyPet")
+        pet.energy = 5
+        pet.hunger = 5
+        pet.play()
+        self.assertEqual(pet.happiness, 8)
+        self.assertEqual(pet.energy, 3)
+        self.assertEqual(pet.hunger, 4)
+        self.assertIn("played, pet.interactions")

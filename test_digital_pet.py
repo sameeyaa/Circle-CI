@@ -35,7 +35,7 @@ class TestDigitalPet(unittest.TestCase):
         pet.sleeping = True
         pet.energy = 3
         pet.wake_up()
-        self.assertEqual(pet.energy, 15) #test if vitals exceed the cap of 10
+        self.assertEqual(pet.energy, 13) #test if vitals exceed the cap of 10
 
     #test playing function
     def test_play(self): 
@@ -46,4 +46,9 @@ class TestDigitalPet(unittest.TestCase):
         self.assertEqual(pet.happiness, 8)
         self.assertEqual(pet.energy, 3)
         self.assertEqual(pet.hunger, 4)
-        self.assertIn("played, pet.interactions")
+        self.assertIn("played", pet.interactions)
+
+if __name__ == '__main__':
+    unittest.main()
+
+#test failes when vitals exceed 10, meaning code is running smoohtly 

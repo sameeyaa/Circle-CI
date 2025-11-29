@@ -14,3 +14,13 @@ class TestDigitalPet(unittest.TestCase):
         self.assertEqual(pet.age, 0)
         self.assertFalse(pet.sleeping)
 
+    #test the feeding function
+    def test_feed(self):
+        pet = DigitalPet("MyPet")
+        pet.hunger = 5
+        pet.feed()
+        self.assertEqual(pet.hunger, 8)
+        self.assertEqual(pet.happiness, 7)
+        self.assertIn("fed", pet.interactions)
+         
+

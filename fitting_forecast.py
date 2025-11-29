@@ -1,0 +1,121 @@
+#import modules needed
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import scipy
+import numpy as np
+
+#convert my chosen csv into a dataframe
+life_expectancy_df = pd.read_csv("life-expectancy.csv")
+print(life_expectancy_df.head())
+
+#getting rid of any columns that are not needed - cleaning data
+life_expectancy_df = life_expectancy_df.drop(columns = ['Entity'])
+
+print(life_expectancy_df.columns.tolist())
+print(life_expectancy_df.head())
+
+#change column name to a simpler name
+life_expectancy_df.rename(columns = {'Period life expectancy at birth' : 'Life expectancy at birth'}, inplace = True)
+print(life_expectancy_df.head())
+
+#masking the data for a specific timeframe
+mask1 = life_expectancy_df['Year'] >= 1940
+mask2 = life_expectancy_df['Year'] <= 2023  #expanding range in order to make predictions
+
+first_range = life_expectancy_df[mask1]
+range_life_expectancy_df = first_range[mask2]
+#print(range_life_expectancy_df.head())
+
+#set the variables for the polynomial graph
+# x axis = Year    y axis = Life expectancy at birth
+#mask and choose one entity 'Cayman Islands'
+mask3 = range_life_expectancy_df['Code'] == 'CYM'
+cym_life_expectancy = range_life_expectancy_df[mask3]
+print(cym_life_expectancy.head())
+print(range_life_expectancy_df.head())
+years = cym_life_expectancy['Year']
+#years_centered = years - years.mean()
+y_obs = cym_life_expectancy['Life expectancy at birth']
+
+xp = np.linspace(1940, 2023 + 10, 300)
+degree = 10
+
+#Plot Chi-Squared for the best fitting line
+def poly():
+    chi_list = []
+    chi_reduced_list = []
+    orders = list(range(1, degree))
+    bic_list = []
+    
+    for i in orders:
+        coefficients = np.polyfit(years, cym_life_expectancy['Life expectancy at birth'], i)
+        p = np.poly1d(coefficients)
+
+        years_centered = years - years.mean()
+        y_obs = cym_life_expectancy['Life expectancy at birth']
+        y_pred = p(years)
+
+        chi_squared = np.sum((y_obs - y_pred) ** 2)
+        dof = len(years) - (i + 1)
+        chi_reduced = chi_squared / dof
+
+        chi_list.append(chi_squared)
+        chi_reduced_list.append(chi_reduced)
+
+        #BIC = -2ln(L^) + kln(n)
+        p_parameters = i + 1
+        bic = len(years) * np.log(chi_squared / len(years)) + p_parameters * np.log(len(years))
+        bic_list.append(bic)
+
+
+    #plot graph for chi-squared
+    plt.figure(figsize = (12, 6))
+    plt.plot(orders, chi_reduced_list, marker = "o")
+    plt.xlabel("Polynomial degree")
+    plt.ylabel("Reduced Chi-Square")
+    plt.title("Model Fit vs Polynomial Order")
+    plt.grid(True)
+    plt.legend()
+    plt.show()
+
+    #plot graph for bic 
+    plt.subplot(1,1,1)
+    plt.plot(orders, bic_list, marker = "o", color = "green")
+    plt.title("BIC vs Polynomial Order")
+    plt.xlabel("Polynomial Order")
+    plt.ylabel("BIC")
+    plt.grid(True)
+    plt.show()
+    plt.legend()
+    plt.tight_layout()
+
+
+
+def polyall():
+    plt.figure(figsize=(12, 7))
+    plt.scatter(years, cym_life_expectancy['Life expectancy at birth'], label='data points')
+    for i in range(1, degree):
+        coefficients = np.polyfit(years, cym_life_expectancy['Life expectancy at birth'], i)
+        p = np.poly1d(coefficients)
+        plt.plot(xp, p(xp), label=f'order {i}', linewidth=2)
+    
+    plt.xlabel('Years')
+    plt.ylabel('Life Expectancy')
+    plt.title('Life Expectancy at Birth in Cayman Islands')
+    plt.legend()
+    plt.show()
+
+ 
+polyall()
+poly()
+
+
+#plot a bayesion information criterion graph to model test
+#BIC = x^2 + Np In(N0)
+#N0 = number of observations
+#Np = number of parameters
+#add bic into the for loop
+
+#For your best model, what are the parameter values and covariance matrix?
+#What are the uncertainties in your parameter values?
